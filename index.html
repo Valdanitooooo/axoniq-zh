@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="icon" href="_media/favicon.ico" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="description" content="Description">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
+  <link rel="stylesheet" href="//unpkg.com/docsify-toc@1.0.0/dist/toc.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/sidebar.min.css" />
+
+  <style>
+    main {
+      max-width: 70%;
+      margin: 0 auto;
+    }
+
+    body.sticky .sidebar {
+      left: 15%;
+    }
+
+    .sidebar-toggle {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app"></div>
+  <script>
+    let rawSources = {
+      "4.4": "https://raw.githubusercontent.com/Valdanitooooo/AxonIQ-reference-guide-zh-source/4.4-zh-cn",
+      "4.3": "https://raw.githubusercontent.com/Valdanitooooo/AxonIQ-reference-guide-zh-source/4.3"
+    }
+    window.$docsify = {
+      name: 'AxonIQ',
+      repo: 'https://github.com/Valdanitooooo/AxonIQ-reference-guide-zh-source.git',
+      alias: {
+        '/.*/_navbar.md': '/_navbar.md',
+        // '/.*/_coverpage.md': '/_coverpage.md',
+        '/4.3/.*_sidebar.md': `${rawSources['4.3']}/SUMMARY.md`,
+        '/4.4/.*_sidebar.md': `${rawSources['4.4']}/SUMMARY.md`,
+        '.*/_sidebar.md': `${rawSources['4.4']}/SUMMARY.md`,
+        // '/4.4/.gitbook/assets/(.*)':'https://raw.githubusercontent.com/Valdanitooooo/AxonIQ-reference-guide-zh-source/4.4-zh-cn/.gitbook/assets/$1',
+        '/4.4/(.*)': `${rawSources['4.4']}/$1`,
+        '/4.3/(.*)': `${rawSources['4.3']}/$1`,
+      },
+      homepage: `${rawSources['4.4']}/README.md`,
+      auto2top: true,
+      basePath: '/',
+      coverpage: false,
+      executeScript: true,
+      loadSidebar: true,
+      loadNavbar: true,
+      mergeNavbar: true,
+      themeColor: '#f35c00',
+      maxLevel: 5,
+      subMaxLevel: 3,
+      search: {
+        noData: {
+          '/': '没有结果!'
+        },
+        paths: 'auto',
+        placeholder: {
+          '/': '搜索'
+        },
+        pathNamespaces: ['/4.3', '/4.4']
+      },
+      toc: {
+        scope: '.markdown-section',
+        headings: 'h2, h3, h4, h5, h6',
+        title: 'contents',
+      },
+      namespaces: [
+        // {
+        //   id: "lang",
+        //   values: ["zh-cn", "en"],
+        //   optional: true,
+        // },
+        {
+          id: "version",
+          values: ["4.3", "4.4"],
+          default: "4.4",
+          optional: true,
+          // selector: ".app-nav"
+        }
+      ],
+      plugins: []
+    }
+  </script>
+  <!-- Docsify v4 -->
+  <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
+  <script src="//unpkg.com/docsify-toc@1.0.0/dist/toc.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/docsify-sidebar-collapse.min.js"></script>
+  <script src="//unpkg.com/docsify-namespaced@0.1.0/dist/docsify-namespaced.min.js"></script>
+  <script src="//cdn.staticfile.org/jquery/3.3.1/jquery.min.js"></script>
+</body>
+<script>
+
+  $(function () {
+    let old_href = $(location).attr("href");
+    let uri_behind = old_href.split("/#/")[1];
+    if (!uri_behind) {
+      $(location).attr('href', '/#/4.4/');
+    } else {
+      let version = uri_behind.split("/")[0];
+      if (!rawSources.hasOwnProperty(version)) {
+        $(location).attr('href', '/#/4.4/');
+      }
+    }
+    $("body").bind('DOMSubtreeModified', function () {
+      $(".markdown-section p img").each(function () {
+        let old_src = $(this).attr("src");
+        let current_href = $(location).attr("href")
+        let version = current_href.split('#/')[1].split("/")[0]
+        if (!version) {
+          return;
+        }
+        new_src = rawSources[version] + '/.gitbook' + old_src.split(".gitbook")[1];
+        $(this).attr("src", new_src);
+      });
+    });
+  })
+
+</script>
+
+</html>
