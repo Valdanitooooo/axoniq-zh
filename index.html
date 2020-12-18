@@ -101,14 +101,14 @@
 <script>
 
   $(function () {
-    let old_href = $(location).attr("href");
-    let uri_behind = old_href.split("/#/")[1];
+    let old_href_arr = $(location).attr("href").split("/#/");
+    let uri_behind = old_href_arr[1];
     if (!uri_behind) {
-      $(location).attr('href', '/#/4.4/');
+      $(location).attr('href', `${old_href_arr[0]}/#/4.4/`);
     } else {
       let version = uri_behind.split("/")[0];
       if (!rawSources.hasOwnProperty(version)) {
-        $(location).attr('href', '/#/4.4/');
+        $(location).attr('href', `${old_href_arr[0]}/#/4.4/`);
       }
     }
     $("body").bind('DOMSubtreeModified', function () {
