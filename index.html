@@ -9,7 +9,7 @@
   <meta name="description" content="Description">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
-  <link rel="stylesheet" href="//unpkg.com/docsify-toc@1.0.0/dist/toc.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify-toc@1.0.0/dist/toc.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/sidebar.min.css" />
 
   <style>
@@ -39,11 +39,11 @@
       name: 'AxonIQ',
       repo: 'https://github.com/Valdanitooooo/axoniq-zh.git',
       alias: {
-        '/.*/_navbar.md': '/_navbar.md',
+        '.*/_navbar.md': '/_navbar.md',
         // '/.*/_coverpage.md': '/_coverpage.md',
         '/4.3/.*_sidebar.md': `${rawSources['4.3']}/SUMMARY.md`,
         '/4.4/.*_sidebar.md': `${rawSources['4.4']}/SUMMARY.md`,
-        '.*/_sidebar.md': `${rawSources['4.4']}/SUMMARY.md`,
+        // '/.*/_sidebar.md': `${rawSources['4.4']}/SUMMARY.md`,
         // '/4.4/.gitbook/assets/(.*)':'https://raw.githubusercontent.com/Valdanitooooo/AxonIQ-reference-guide-zh-source/4.4-zh-cn/.gitbook/assets/$1',
         '/4.4/(.*)': `${rawSources['4.4']}/$1`,
         '/4.3/(.*)': `${rawSources['4.3']}/$1`,
@@ -57,8 +57,8 @@
       loadNavbar: true,
       mergeNavbar: true,
       themeColor: '#f35c00',
-      maxLevel: 5,
-      subMaxLevel: 3,
+      maxLevel: 3,
+      subMaxLevel: 2,
       search: {
         noData: {
           '/': '没有结果!'
@@ -93,10 +93,10 @@
   </script>
   <!-- Docsify v4 -->
   <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
-  <script src="//unpkg.com/docsify-toc@1.0.0/dist/toc.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify-toc@1.0.0/dist/toc.js"></script>
   <script src="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/docsify-sidebar-collapse.min.js"></script>
-  <script src="//unpkg.com/docsify-namespaced@0.1.0/dist/docsify-namespaced.min.js"></script>
-  <script src="//cdn.staticfile.org/jquery/3.3.1/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify-namespaced@0.1.0/dist/docsify-namespaced.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
 </body>
 <script>
 
